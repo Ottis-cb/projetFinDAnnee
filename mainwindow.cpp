@@ -1,3 +1,4 @@
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFrame>
@@ -9,6 +10,15 @@
 #include <QFont>
 #include <QStyle>
 #include <QStatusBar>
+#include <QStackedWidget>
+#include <QComboBox>
+#include <QDateEdit>
+#include <QDate>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -69,9 +79,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     //zone principale
     QWidget *content = new QWidget;
-    content->setObjectName("content");
+    content->setObjectName("contentArea");
 
-    QVBoxLayout *contentLayout = new QVBoxLayout;
+    //Layout occupant toute la zone principale
+    QVBoxLayout *outerLayout = new QVBoxLayout(content);
+    outerLayout->setContentsMargins(0, 0, 0, 0);
+    outerLayout->setSpacing(0);
+
+    //gestionnaire de pages
+    QStackedWidget *pages = new QStackedWidget(content);
+    outerLayout->addWidget(pages);
+
+    //Page d'acceuil
+    QWidget *dashboardPage = new QWidget;
+    dashboardPage->setObjectName("content");
+
+    //Layout de l'acceuil
+    QVBoxLayout *contentLayout = new QVBoxLayout(dashboardPage);
     contentLayout->setContentsMargins(30, 24, 30, 24);
     contentLayout->setSpacing(22);
 
@@ -115,7 +139,7 @@ MainWindow::MainWindow(QWidget *parent)
         QLabel *icon = new QLabel(symbol);
         icon->setStyleSheet(
             "color: " + accent +
-            "; font-size: 23px; fontWeight: bold;"
+            "; font-size: 23px; font-weight: bold;"
             );
 
         QLabel *number = new QLabel(value);
@@ -155,7 +179,7 @@ MainWindow::MainWindow(QWidget *parent)
     welcomeText->setObjectName("subtitle");
     welcomeText->setWordWrap(true);
 
-    QPushButton *newStudent = new QPushButton("+ Preparer une inscription");
+    QPushButton *newStudent = new QPushButton("Preparer une inscription");
     newStudent->setObjectName("primaryButton");
     newStudent->setMinimumHeight(44);
     newStudent->setCursor(Qt::PointingHandCursor);
@@ -174,15 +198,211 @@ MainWindow::MainWindow(QWidget *parent)
     footer->setObjectName("footer");
     contentLayout->addWidget(footer);
 
+    //ajouter la page d'acceuil
+    pages->addWidget(dashboardPage);
+
+
+
+
+    //PAGE INSCRIPTION
+    QWidget *inscriptionPage = new QWidget;
+    inscriptionPage->setObjectName("content");
+
+    QVBoxLayout *inscriptionLayout = new QVBoxLayout(inscriptionPage);
+    inscriptionLayout->setContentsMargins(30, 24, 30, 24);
+    inscriptionLayout->setSpacing(20);
+
+    QLabel *formTitle = new QLabel("Inscription d'un eleve");
+    formTitle->setObjectName("heading");
+
+    QLabel *formSubtitle = new QLabel("Remplissez les informations de l'eleve.");
+    formSubtitle->setObjectName("subtitle");
+
+    inscriptionLayout->addWidget(formTitle);
+    inscriptionLayout->addWidget(formSubtitle);
+
+    //cadre contenant le formulaire
+    QFrame *formCard = new QFrame;
+    formCard->setObjectName("welcomeCard");
+
+    QFormLayout *formLayout = new QFormLayout(formCard);
+    formLayout->setContentsMargins(24, 24, 24, 24);
+    formLayout->setHorizontalSpacing(20);
+    formLayout->setVerticalSpacing(16);
+
+    //champ nom
+    QLineEdit *nomEdit = new QLineEdit;
+    nomEdit->setPlaceholderText("Nom de l'eleve");
+
+    //champ prenom
+    QLineEdit *prenomEdit = new QLineEdit;
+    prenomEdit->setPlaceholderText("Prenom de l'eleve");
+
+    //Date de naissance
+    QDateEdit *dateEdit = new QDateEdit;
+    dateEdit->setCalendarPopup(true);
+    dateEdit->setDisplayFormat("dd/MM/yyyy");
+    dateEdit->setDate(QDate::currentDate().addYears(-10));
+
+    //sexe
+    QComboBox *sexeCombo = new QComboBox;
+    sexeCombo->addItems({"Selectionner",
+                        "Masculin",
+                        "Feminin"
+                        });
+
+    //Niveau
+    QComboBox *niveauCombo = new QComboBox;
+    niveauCombo->addItems({
+    "Selectionner",
+        "L1","L2","L3","M1","M2"
+    });
+
+    //Matricule
+    QLineEdit *matriculeEdit = new QLineEdit;
+    matriculeEdit->setPlaceholderText("Numero matricule");
+    //Telephone
+    QLineEdit *teleponeEdit = new QLineEdit;
+    teleponeEdit->setPlaceholderText("Numero de telephone");
+
+    //Adresse
+    QLineEdit *adresseEdit = new QLineEdit;
+    adresseEdit->setPlaceholderText("Adresse de l'eleve");
+
+    //Placer les champs dans le formulaire
+    formLayout->addRow("Nom *", nomEdit);
+    formLayout->addRow("Prenom *", prenomEdit);
+    formLayout->addRow("Matricule *", matriculeEdit);
+    formLayout->addRow("Date de naissance", dateEdit);
+    formLayout->addRow("sexe *", sexeCombo);
+    formLayout->addRow("Niveau *", niveauCombo);
+    formLayout->addRow("Telephone", teleponeEdit);
+    formLayout->addRow("Adresse", adresseEdit);
+
+    //ajouter le cadre a la page
+    inscriptionLayout->addWidget(formCard);
+    inscriptionLayout->addStretch();
+
+
+    //Conteneur horizontal pour les boutons
+    QHBoxLayout *buttonLayout = new QHBoxLayout;
+
+
+
+
+    //creation des trois boutons
+    QPushButton *saveButton = new QPushButton("Enregistrer");
+    QPushButton *resetButton = new QPushButton("Réinitialiser");
+    QPushButton *cancelButton = new QPushButton("Annuler");
+
+    //Attribution des noms pour le style QSS
+    saveButton->setObjectName("saveButton");
+    resetButton->setObjectName("resetButton");
+    cancelButton->setObjectName("cancelButton");
+
+    //Ajouter les boutons au layout
+    buttonLayout->addStretch();
+    buttonLayout->addWidget(resetButton);
+    buttonLayout->addWidget(cancelButton);
+    buttonLayout->addWidget(saveButton);
+
+    //Ajouter le layout des boutons à la page
+    inscriptionLayout->addLayout(buttonLayout);
+
+    //Faire fonctionner les boutons
+    //Réinitialiser
+    connect(resetButton, &QPushButton::clicked, this, [=](){
+        nomEdit->clear();
+        prenomEdit->clear();
+        adresseEdit->clear();
+        matriculeEdit->clear();
+        dateEdit->setDate(QDate::currentDate().addYears(-10));
+
+        sexeCombo->setCurrentIndex(0);
+        niveauCombo->setCurrentIndex(0);
+    });
+
+    //Annuler
+    connect(cancelButton, &QPushButton::clicked, this, [=](){
+        pages->setCurrentWidget(dashboardPage);
+    });
+
+    //Enregistrer
+    connect(saveButton, &QPushButton::clicked, this, [=](){
+        //Récuperer les infos
+        QString nom = nomEdit->text().trimmed();
+        QString prenom = prenomEdit->text().trimmed();
+        QString matricule = matriculeEdit->text().trimmed();
+        QString dateNaissance = dateEdit->date().toString("dd/MM/yyyy");
+        QString sexe = sexeCombo->currentText();
+        QString niveau = niveauCombo->currentText();
+        QString telephone = teleponeEdit->text().trimmed();
+        QString adresse = adresseEdit->text().trimmed();
+
+        //Verifier les champs obligatoire
+        if (nom.isEmpty() || prenom.isEmpty() || matricule.isEmpty() || telephone.isEmpty() || sexeCombo->currentIndex() == 0 || niveauCombo->currentIndex() ==0 ){
+            QMessageBox::warning(this, "formulaire incomplet","Veuillez remplir tous les champs obligatoires.");
+            return;
+        }
+
+        //Ouvrir le fichier en mode ajout
+        QFile fichier("eleves.txt");
+
+        if(!fichier.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+            QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le fichier.");
+            return;
+        }
+
+        //Ecrire les infos dans le fichier
+        QTextStream sortie(&fichier);
+
+        sortie << nom << ";"
+               << prenom << ";"
+               << matricule << ";"
+               << dateNaissance << ";"
+               << sexe << ";"
+               << telephone << ";"
+               << adresse << "\n";
+
+        //fermer le fichier
+        fichier.close();
+
+        //confirmer l'enregistrement
+        QMessageBox::information(this, "succès", "L'élève a été enregistré avec succès.");
+     });
+
+
+
+    //Enregistrer la page d'inscription
+    pages->addWidget(inscriptionPage);
+
+
+
+    //Navigation entre les pages
+    //cliquer sur Accueil
+    connect(accueil, &QPushButton::clicked, this, [pages, dashboardPage](){
+        pages->setCurrentWidget(dashboardPage);
+    });
+
+    //Cliquer sur inscription
+    connect(inscription, &QPushButton::clicked, this, [pages, inscriptionPage](){
+        pages->setCurrentWidget(inscriptionPage);
+    });
+
+    //Cliquer sur le bouton de la page d'acceuil
+    connect(newStudent, &QPushButton::clicked, this, [pages, inscriptionPage](){
+        pages->setCurrentWidget(inscriptionPage);
+    });
+
+
     //Asseblage final
     mainLayout->addWidget(sidebar);
     mainLayout->addWidget(content, 1);
 
-    //Action temporaire: confirmation visuelle
-    connect(newStudent, &QPushButton::clicked , this, [this](){
-        statusBar()->showMessage("Le formulaire d'inscription sera ahoute"
-                                 "a la prochaine etape.", 4000);
-    });
+
+
+
+
 
 
     //Style global QSS
@@ -197,7 +417,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     QFrame#sidebar {
-        backgroung-color: #202025;
+        background-color: #202025;
         border-right: 1px solid #34343b;
     }
 
@@ -212,7 +432,7 @@ MainWindow::MainWindow(QWidget *parent)
         color: #858591;
         font-size: 10px;
         font-weight: bold;
-        letter-spacing: 1px
+        letter-spacing: 1px;
     }
 
     QPushButton#menuButton,
@@ -249,7 +469,7 @@ MainWindow::MainWindow(QWidget *parent)
     QLabel#heading {
         color: #ffffff;
         font-size: 27px;
-        font-weight: bold
+        font-weight: bold;
     }
 
     QLabel#subtitle {
@@ -266,7 +486,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     QFrame#statCard,
-    QFrame#welcomeCard {
+    QFrame#WelcomeCard {
         background-color: #232329;
         border: 1px solid #34343d;
         border-radius: 12px;
@@ -317,6 +537,114 @@ MainWindow::MainWindow(QWidget *parent)
         color: #c4c4cc;
         background-color: #202025;
     }
+
+    QWidget#contentArea,
+    QWidget#content {
+        background-color: #17171a;
+    }
+
+    QFrame#statCard,
+    QFrame#welcomeCard {
+        background-color: #232329;
+        border: 1px solid #○34343d;
+        border-radius: 12px;
+    }
+
+    QLineEdit, QDateEdit, QComboBox {
+        color: #f4f4f5;
+        background-color: #1d1d23;
+        border: 1px solid #41414b;
+        border-radius: 8px;
+        padding: 10px 12px;
+        min-height: 22px;
+        selection-background-color: #7665f5;
+    }
+
+    QLineEdit:focus, QDateEdit:focus, QComboBox:focus {
+        border: 1px solid #897bff;
+        background-color: #22222a;
+    }
+
+    QLineEdit:hover, QDateEdit:hover, QComboBox:hover{
+        border-color: #6252d8;
+    ;
+
+    QComboBox QAbstractItemView {
+        color: #f4f4f5;
+        background-color: #232329;
+        border: 1px solid #41414b;
+        outline: none;
+    }
+
+    QFormLayout QLabel {
+        color: #d4d4dc;
+        font-size: 13px;
+    }
+
+    QPushButton {
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    QPushButton#primaryButton{
+        color: white;
+        background-color: #7665f5;
+        border: none;
+        font-weight: bold;
+    }
+    QPushButton#primaryButton:hover{
+        background-color: #897bff;
+    }
+    QPushButton#primaryButton:pressed{
+        background-color: #6252d8;
+    }
+
+    QCalendarWidget QWidget{
+        color: #f4f4f5;
+        background-color: #232329;
+    }
+    QCalendarWidget QToolButton{
+        color: white;
+        background-color: #303039;
+    }
+
+    QPushButton#saveButton {
+        color: white;
+        background-color: #3978e8;
+        border: none;
+        border-radius: 9px;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        min-width: 120px;
+    }
+    QPushButton#saveButton:hover {
+        background-color: #2865d4;
+    }
+    QPushButton#saveButton:pressed {
+        background-color: #1e50b0;
+    }
+
+
+    QPushButton#resetButton {
+        color: #e5e7eb;
+        background-color: #30313a;
+        border: 1px solid #41424d;
+        border-radius: 9px;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        min-width: 120px;
+    }
+    QPushButton#resetButton:hover {
+        background-color: #3c3d48;
+        border-color: #626474;
+    }
+    QPushButton#resetButton:pressed {
+        background-color: #272831;
+    }
+
     )");
 
 }
