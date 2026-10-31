@@ -164,7 +164,7 @@ MainWindow::MainWindow(QWidget *parent)
     //6. panneau de bienvenu
     QFrame *welcomeCard = new QFrame;
 
-    welcomeCard->setObjectName("WelcomeCard");
+    welcomeCard->setObjectName("welcomeCard");
 
     QVBoxLayout *welcomeLayout = new QVBoxLayout(welcomeCard);
     welcomeLayout->setContentsMargins(24, 22, 24, 22);
@@ -281,7 +281,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //ajouter le cadre a la page
     inscriptionLayout->addWidget(formCard);
-    inscriptionLayout->addStretch();
 
 
     //Conteneur horizontal pour les boutons
@@ -307,6 +306,7 @@ MainWindow::MainWindow(QWidget *parent)
     buttonLayout->addWidget(saveButton);
 
     //Ajouter le layout des boutons à la page
+    inscriptionLayout->addStretch();
     inscriptionLayout->addLayout(buttonLayout);
 
     //Faire fonctionner les boutons
@@ -486,7 +486,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     QFrame#statCard,
-    QFrame#WelcomeCard {
+    QFrame#welcomeCard {
         background-color: #232329;
         border: 1px solid #34343d;
         border-radius: 12px;
@@ -546,7 +546,7 @@ MainWindow::MainWindow(QWidget *parent)
     QFrame#statCard,
     QFrame#welcomeCard {
         background-color: #232329;
-        border: 1px solid #○34343d;
+        border: 1px solid #34343d;
         border-radius: 12px;
     }
 
@@ -567,7 +567,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QLineEdit:hover, QDateEdit:hover, QComboBox:hover{
         border-color: #6252d8;
-    ;
+    }
 
     QComboBox QAbstractItemView {
         color: #f4f4f5;
@@ -645,6 +645,24 @@ MainWindow::MainWindow(QWidget *parent)
         background-color: #272831;
     }
 
+    QPushButton#cancelButton {
+        color: #a1a1aa;
+        background-color: transparent;
+        border: 1px solid #41424d;
+        border-radius: 9px;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        min-width: 100px;
+    }
+    QPushButton#cancelButton:hover {
+        color: white;
+        background-color: #30313a;
+        border-color: #626474;
+    }
+    QPushButton#resetButton:pressed {
+        background-color: #272831;
+    }
     )");
 
 }
