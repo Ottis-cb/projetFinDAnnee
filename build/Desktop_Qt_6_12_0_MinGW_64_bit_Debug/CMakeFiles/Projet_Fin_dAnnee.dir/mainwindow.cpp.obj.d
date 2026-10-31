@@ -498,4 +498,14 @@ CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj: \
  C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMessageBox \
  C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmessagebox.h \
  C:/Qt/6.12.0/mingw_64/include/QtWidgets/qdialog.h \
- C:/Qt/6.12.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QTableWidget \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtablewidget.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtableview.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qabstractitemview.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qitemselectionmodel.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QHeaderView \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qheaderview.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QAbstractItemView \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/QStringList

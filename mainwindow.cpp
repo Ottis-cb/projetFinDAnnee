@@ -19,6 +19,10 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QTableWidget>
+#include <QHeaderView>
+#include <QAbstractItemView>
+#include <QStringList>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -377,6 +381,129 @@ MainWindow::MainWindow(QWidget *parent)
     pages->addWidget(inscriptionPage);
 
 
+    //PAGE LISTE DES ELEVES
+
+
+    QWidget *elevesPage = new QWidget;
+    elevesPage->setObjectName("content");
+
+
+    //layout principal de la page
+    QVBoxLayout *elevesLayout = new QVBoxLayout(elevesPage);
+    elevesLayout->setContentsMargins(30, 24, 30, 24);
+    elevesLayout->setSpacing(20);
+
+    //Titre de la page
+    QLabel *elevesTitle = new QLabel("Liste des eleves");
+    elevesTitle->setObjectName("heading");
+    QLabel *elevesSubtitle = new QLabel("Consultez et gerez les informations des eleves.");
+    elevesSubtitle->setObjectName("subtitle");
+
+    elevesLayout->addWidget(elevesTitle);
+    elevesLayout->addWidget(elevesSubtitle);
+
+    //cadre contenant le tableau
+    QFrame *tableCard = new QFrame;
+    tableCard->setObjectName("welcomeCard");
+
+    QVBoxLayout *tableLayout = new QVBoxLayout(tableCard);
+    tableLayout->setContentsMargins(20, 20, 20, 20);
+
+    //Creation du tableau
+    QTableWidget *tableEleves = new QTableWidget;
+
+    //Nombre de colonnes
+    tableEleves->setColumnCount(8);
+
+    //Noms des colonnes
+    tableEleves->setHorizontalHeaderLabels({
+        "Matricule",
+        "Nom",
+        "Prenom",
+        "Date de naissance",
+        "Sexe",
+        "Niveau",
+        "Telephone",
+        "Adresse"
+    });
+
+    //Adapter les colonnes a la largeur disponnible
+    tableEleves->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    //Hauteur des lignes
+    tableEleves->verticalHeader()->setDefaultSectionSize(42);
+
+    //Masquer les numeros des lignes
+    tableEleves->verticalHeader()->setVisible(false);
+
+    //Selectionner une ligne entière
+    tableEleves->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    //Une seule ligne selectionnable a la fois
+    tableEleves->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    //Interdire la modification directe des cellules
+    tableEleves->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    //Ajouter le tableau au cadre
+    tableLayout->addWidget(tableEleves);
+
+
+    //Fonction pour charger les eleves depuis le fichier
+    auto chargerEleves = [tableEleves]()
+    {
+        //Vider le tableau avant de le remplir
+        tableEleves->setRowCount(0);
+
+        //Ouvrir le fichier en lecture
+        QFile fichier("eleves.txt");
+        if(!fichier.open(QIODevice::ReadOnly | QIODevice::Text)){
+            return;
+        }
+
+        //Creer un flux de lecture
+        QTextStream entree(&fichier);
+
+        //Lire les fichiers ligne par ligne
+        while(!entree.atEnd()){
+            QString ligne = entree.readLine();
+
+            //Decouper la ligne avec le point-virgule
+            QStringList informations = ligne.split(';');
+
+            //Verifier que la ligne contient 8 informations
+            if (informations.size() != 8){
+                continue;
+            }
+
+            //Ajouter une nouvelle ligne au tableau
+            int nouvelleLigne = tableEleves->rowCount();
+            tableEleves->insertRow(nouvelleLigne);
+
+            //Remplir les 8 colonnes
+            for (int colonne =0; colonne<8; colonne++){
+                QTableWidgetItem*cellule= new QTableWidgetItem(informations.at(colonne).trimmed());
+                tableEleves->setItem(nouvelleLigne, colonne, cellule);
+            }
+        }
+
+        //Fermer le fichier
+        fichier.close();
+    };
+
+
+
+    //Ajouter le cadre a la page
+    elevesLayout->addWidget(tableCard);
+
+    //Ajouter la page au gestionnaire de pages
+    pages->addWidget(elevesPage);
+
+
+
+
+
+
 
     //Navigation entre les pages
     //cliquer sur Accueil
@@ -387,6 +514,10 @@ MainWindow::MainWindow(QWidget *parent)
     //Cliquer sur inscription
     connect(inscription, &QPushButton::clicked, this, [pages, inscriptionPage](){
         pages->setCurrentWidget(inscriptionPage);
+    });
+    //Cliquer sur liste des eleves
+    connect(eleves, &QPushButton::clicked, this, [pages, elevesPage](){
+        pages->setCurrentWidget(elevesPage);
     });
 
     //Cliquer sur le bouton de la page d'acceuil
