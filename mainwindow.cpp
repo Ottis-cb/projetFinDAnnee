@@ -320,6 +320,7 @@ MainWindow::MainWindow(QWidget *parent)
         prenomEdit->clear();
         adresseEdit->clear();
         matriculeEdit->clear();
+        teleponeEdit->clear();
         dateEdit->setDate(QDate::currentDate().addYears(-10));
 
         sexeCombo->setCurrentIndex(0);
@@ -360,11 +361,12 @@ MainWindow::MainWindow(QWidget *parent)
         //Ecrire les infos dans le fichier
         QTextStream sortie(&fichier);
 
-        sortie << nom << ";"
+        sortie << matricule << ";"
+                << nom << ";"
                << prenom << ";"
-               << matricule << ";"
                << dateNaissance << ";"
                << sexe << ";"
+                << niveau << ";"
                << telephone << ";"
                << adresse << "\n";
 
@@ -445,6 +447,37 @@ MainWindow::MainWindow(QWidget *parent)
     //Interdire la modification directe des cellules
     tableEleves->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+
+
+    //Conteneur des boutons d'action
+    QHBoxLayout *actionsLayout = new QHBoxLayout;
+
+    //Bouton actualiser
+    QPushButton *refreshButton = new QPushButton("Actualiser");
+    refreshButton->setObjectName("resetButton");
+
+    //Bouton supprimer
+    QPushButton *deleteButton = new QPushButton("Supprimer");
+    deleteButton->setObjectName("deleteButton");
+
+    //curseur
+    refreshButton->setCursor(Qt::PointingHandCursor);
+    deleteButton->setCursor(Qt::PointingHandCursor);
+
+    //Placer les boutons à droite
+    actionsLayout->addStretch();
+    actionsLayout->addWidget(refreshButton);
+    actionsLayout->addWidget(deleteButton);
+
+    //Ajouter les boutons au-dessus du tableau
+    tableLayout->addLayout(actionsLayout);
+
+
+
+
+
+
+
     //Ajouter le tableau au cadre
     tableLayout->addWidget(tableEleves);
 
@@ -493,6 +526,75 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
+    //Faire fonctionner les buttons du tableau
+    //refreshButton
+    connect(refreshButton, &QPushButton::clicked, this, [chargerEleves](){
+        chargerEleves();
+    });
+    //deleteButton
+    connect(deleteButton, &QPushButton::clicked, this, [=](){
+        //Verifier si une ligne est séléctionnée
+        int ligne = tableEleves->currentRow();
+
+        if (ligne < 0){
+            QMessageBox::warning(this, "Aucune sélection", "Veuillez sélectionner un éléve.");
+            return;
+        }
+
+        //Demander confirmation
+        QMessageBox::StandardButton reponse = QMessageBox::question(this, "Confirmation", "Voulez vous vraiment supprimer cet élève.",
+        QMessageBox::Yes | QMessageBox::No);
+
+        if (reponse != QMessageBox::Yes){
+            return;
+        }
+
+        //Recuperer le matricule de l'élève
+        QString matricule = tableEleves->item(ligne, 0)->text();
+
+        //Lire tous les élèves sauf celui à supprimer
+        QFile fichier("eleves.txt");
+
+        if (!fichier.open(QIODevice::ReadOnly | QIODevice::Text)){
+            QMessageBox::critical(this, "Erreur", "Impossible de lire le fichier.");
+            return;
+        }
+
+        QStringList lignes ;
+        QTextStream entree(&fichier);
+
+        while (!entree.atEnd()){
+            QString ligneTexte = entree.readLine();
+            QStringList infos = ligneTexte.split(';');
+
+            if(infos.size() == 8 && infos.at(0).trimmed() != matricule){
+                lignes.append(ligneTexte);
+            }
+        }
+
+        fichier.close();
+
+        //Réecrire le fichier sans l'élève supprimé
+        if(!fichier.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)){
+            QMessageBox::critical(this, "Erreur", "Impossible de modifier le fichier.");
+            return;
+        }
+
+        QTextStream sortie(&fichier);
+        for (const QString &ligneTexte : lignes){
+            sortie << ligneTexte << "\n";
+        }
+        fichier.close();
+
+        //Actualiser le tableau
+        chargerEleves();
+
+        QMessageBox::information(this, "Suppression réussi", "L'élève a été supprimé.");
+    });
+
+
+
+
     //Ajouter le cadre a la page
     elevesLayout->addWidget(tableCard);
 
@@ -516,7 +618,8 @@ MainWindow::MainWindow(QWidget *parent)
         pages->setCurrentWidget(inscriptionPage);
     });
     //Cliquer sur liste des eleves
-    connect(eleves, &QPushButton::clicked, this, [pages, elevesPage](){
+    connect(eleves, &QPushButton::clicked, this, [pages, elevesPage, chargerEleves](){
+        chargerEleves();
         pages->setCurrentWidget(elevesPage);
     });
 
@@ -793,6 +896,23 @@ MainWindow::MainWindow(QWidget *parent)
     }
     QPushButton#resetButton:pressed {
         background-color: #272831;
+    }
+
+    QPushButton#deleteButton {
+        color: white;
+        background-color: #dc4545;
+        border: none;
+        border-radius: 9px;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        min-width: 120px;
+    }
+    QPushButton#deleteButton:hover {
+        background-color: #ef5555;
+    }
+    QPushButton#deleteButton:pressed {
+        background-color: #b83232;
     }
     )");
 
