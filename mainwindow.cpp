@@ -130,64 +130,137 @@ MainWindow::MainWindow(QWidget *parent)
     QGridLayout *statsLayout = new QGridLayout;
     statsLayout->setSpacing(16);
 
-    auto createCard = [](const QString&symbol, const QString&value, const QString&description, const QString&accent)->QFrame *
-    {
-        QFrame *card = new QFrame;
-        card->setObjectName("statCard");
-        card->setMinimumHeight(135);
+    //afficheurs de nombres
 
-        QVBoxLayout *layout= new QVBoxLayout(card);
-        layout->setContentsMargins(18, 16, 18, 16);
-        layout->setSpacing(8);
+    QLabel *totalNumber = nullptr;
+    QLabel *garçonsNumber = nullptr;
+    QLabel *fillesNumber = nullptr;
+
+    //Fonction qui créer une carte statistique
+
+    auto createCard = [](const QString &symbol, const QString &value, const QString &description, const QString &accent, QLabel *&numberLabel)-> QFrame *{
+        QFrame *card = new QFrame;
+
+        card->setObjectName("dashboardStatCard");
+        card->setMinimumHeight(145);
+
+        QVBoxLayout *layout = new QVBoxLayout(card);
+        layout->setContentsMargins(20, 18, 20, 18);
+        layout->setSpacing(9);
 
         QLabel *icon = new QLabel(symbol);
-        icon->setStyleSheet(
-            "color: " + accent +
-            "; font-size: 23px; font-weight: bold;"
-            );
+        icon->setObjectName("dashboardStatIcon");
+        icon->setStyleSheet("color: " + accent + "; font-size: 25px; font-weight: bold;");
 
-        QLabel *number = new QLabel(value);
-        number->setObjectName("statNumber");
+
+        //Création du labels qui afficherons les nombres
+        numberLabel = new QLabel(value);
+        numberLabel->setObjectName("dashboardStatNumber");
+
         QLabel *text = new QLabel(description);
-
-        text->setObjectName("statDescription");
+        text->setObjectName("dashboardStatDescription");
 
         layout->addWidget(icon);
-        layout->addWidget(number);
+        layout->addWidget(numberLabel);
         layout->addWidget(text);
+        layout->addStretch();
 
         return card;
     };
 
-    statsLayout->addWidget(createCard("02", "0", "Fiches enregistree", "#6EE7B7"), 0, 1);
+    //Création des trois cartes
+    statsLayout->addWidget(createCard("TOTAL", "0", "Total des élèves", "#a78bfa", totalNumber), 0, 0);
+
+    statsLayout->addWidget(createCard(QString(QChar(0x2642)), "0", "Garçons", "#60a5fa", garçonsNumber), 0, 1);
+
+    statsLayout->addWidget(createCard(QString(QChar(0x2640)), "0", "Filles", "#f472b6", fillesNumber), 0, 2);
 
     contentLayout->addLayout(statsLayout);
+
+
+    //Fonction pour calculer les statistiques
+
+    auto actualiserStatistiques = [=]()
+    {
+        int total = 0;
+        int garcons = 0;
+        int filles = 0;
+
+        //ouvrir le fichier des élèves
+        QFile fichier("eleves.txt");
+
+        if(fichier.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            QTextStream entree(&fichier);
+
+            //lire chaque élève
+            while (!entree.atEnd())
+            {
+                QString ligne = entree.readLine();
+                QStringList informations = ligne.split(";");
+
+                //verifier que la ligne contient 8 informations
+                if (informations.size() != 8){
+                    continue;
+                }
+                total++;
+
+                //Le sexe se trouve à la position 4
+                QString sexe = informations.at(4).trimmed();
+                if (sexe == "Masculin"){
+                    garcons++;
+                }
+                else if (sexe == "Feminin" || sexe == "Féminin") {
+                    filles++;
+                }
+
+            }
+            fichier.close();
+        }
+        //Actualiser les trois nombres affichés
+
+        totalNumber->setText(QString::number(total));
+        garçonsNumber->setText(QString::number(garcons));
+        fillesNumber->setText(QString::number(filles));
+    };
+
+    //actualiser les statistiques au démarrage
+    actualiserStatistiques();
 
 
 
     //6. panneau de bienvenu
     QFrame *welcomeCard = new QFrame;
 
-    welcomeCard->setObjectName("welcomeCard");
+    welcomeCard->setObjectName("dashboardWelcomeCard");
 
     QVBoxLayout *welcomeLayout = new QVBoxLayout(welcomeCard);
-    welcomeLayout->setContentsMargins(24, 22, 24, 22);
-    welcomeLayout->setSpacing(12);
+    welcomeLayout->setContentsMargins(28, 26, 28, 26);
+    welcomeLayout->setSpacing(14);
 
-    QLabel *welcomeTitle = new QLabel("Bienvenu dans GestionEleves");
-    welcomeTitle->setObjectName("sectionTitle");
+    //Petit texte introductif
+    QLabel *welcomeBadge = new QLabel("ESPACE D'ADMINISTRATION");
+    welcomeBadge->setObjectName("dashboardBadge");
 
-    QLabel *welcomeText = new QLabel("Centraliser les informations des eleves, "
+    //Grand titre
+    QLabel *welcomeTitle = new QLabel("Bienvenu dans GestionEleves !");
+    welcomeTitle->setObjectName("dashboardWelcomeTitle");
+
+    //description
+    QLabel *welcomeText = new QLabel("Centraliser les informations des élèves, "
                                      "organiser les inscriptions et consultez"
-                                     "les donnees en un seul endroit.");
-    welcomeText->setObjectName("subtitle");
+                                     "vos données scolaires depuis un seul endroit.");
+    welcomeText->setObjectName("dashboardWelcomeText");
     welcomeText->setWordWrap(true);
 
-    QPushButton *newStudent = new QPushButton("Preparer une inscription");
+    //Bouton d'inscription
+    QPushButton *newStudent = new QPushButton(" Preparer une inscription");
     newStudent->setObjectName("primaryButton");
-    newStudent->setMinimumHeight(44);
+    newStudent->setMinimumHeight(46);
     newStudent->setCursor(Qt::PointingHandCursor);
 
+    //Organisation du panneau
+    welcomeLayout->addWidget(welcomeBadge);
     welcomeLayout->addWidget(welcomeTitle);
     welcomeLayout->addWidget(welcomeText);
     welcomeLayout->addSpacing(8);
@@ -325,11 +398,13 @@ MainWindow::MainWindow(QWidget *parent)
 
         sexeCombo->setCurrentIndex(0);
         niveauCombo->setCurrentIndex(0);
+        actualiserStatistiques();
     });
 
     //Annuler
     connect(cancelButton, &QPushButton::clicked, this, [=](){
         pages->setCurrentWidget(dashboardPage);
+        actualiserStatistiques();
     });
 
     //Enregistrer
@@ -375,6 +450,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         //confirmer l'enregistrement
         QMessageBox::information(this, "succès", "L'élève a été enregistré avec succès.");
+        actualiserStatistiques();
      });
 
 
@@ -409,10 +485,16 @@ MainWindow::MainWindow(QWidget *parent)
     tableCard->setObjectName("welcomeCard");
 
     QVBoxLayout *tableLayout = new QVBoxLayout(tableCard);
-    tableLayout->setContentsMargins(20, 20, 20, 20);
+    tableLayout->setContentsMargins(10, 20, 10, 20);
 
     //Creation du tableau
     QTableWidget *tableEleves = new QTableWidget;
+
+    QLineEdit *searchEdit = new QLineEdit;
+    searchEdit->setPlaceholderText("Rechercherun élève (nom, prénom, matricule...)");
+    searchEdit->setObjectName("searchEdit");
+    searchEdit->setMinimumHeight(42);
+    searchEdit->setClearButtonEnabled(true);
 
     //Nombre de colonnes
     tableEleves->setColumnCount(8);
@@ -448,6 +530,9 @@ MainWindow::MainWindow(QWidget *parent)
     tableEleves->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
+    tableEleves->setWordWrap(true);
+    tableEleves->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
 
     //Conteneur des boutons d'action
     QHBoxLayout *actionsLayout = new QHBoxLayout;
@@ -472,6 +557,35 @@ MainWindow::MainWindow(QWidget *parent)
     //Ajouter les boutons au-dessus du tableau
     tableLayout->addLayout(actionsLayout);
 
+    //Ajouter la barre de recherche
+    tableLayout->addWidget(searchEdit);
+
+    //Recherche dynamique des élèves
+
+    connect(searchEdit, &QLineEdit::textChanged, this, [=](const QString &recherche){
+        QString texte = recherche.trimmed();
+
+        for (int ligne=0 ; ligne < tableEleves->rowCount(); ligne++)
+        {
+            bool correspondance = false;
+
+            //parcourir les 8 colonnes
+            for (int colonne = 0; colonne < 8; colonne++)
+            {
+                QTableWidgetItem *item = tableEleves->item(ligne, colonne);
+
+                if(item && item->text().contains(texte, Qt::CaseInsensitive))
+                {
+                    correspondance = true;
+                    break;
+                }
+            }
+
+            // Afficher ou masquer la ligne
+
+            tableEleves->setRowHidden(ligne, ! correspondance);
+        }
+    });
 
 
 
@@ -483,7 +597,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //Fonction pour charger les eleves depuis le fichier
-    auto chargerEleves = [tableEleves]()
+    auto chargerEleves = [tableEleves, actualiserStatistiques]()
     {
         //Vider le tableau avant de le remplir
         tableEleves->setRowCount(0);
@@ -522,6 +636,8 @@ MainWindow::MainWindow(QWidget *parent)
 
         //Fermer le fichier
         fichier.close();
+
+        actualiserStatistiques();
     };
 
 
@@ -590,6 +706,7 @@ MainWindow::MainWindow(QWidget *parent)
         chargerEleves();
 
         QMessageBox::information(this, "Suppression réussi", "L'élève a été supprimé.");
+        actualiserStatistiques();
     });
 
 
@@ -719,46 +836,70 @@ MainWindow::MainWindow(QWidget *parent)
         padding: 0 14px;
     }
 
-    QFrame#statCard,
-    QFrame#welcomeCard {
-        background-color: #232329;
-        border: 1px solid #34343d;
-        border-radius: 12px;
+    QFrame#dashboardStatCard {
+        background-color: #23232b;
+        border: 1px solid #343440;
+        border-radius: 14px;
+    }
+    QFrame#dashboardStatCard:hover {
+        background-color: #292936;
+        border: 1px solid #8060d8;
     }
 
-    QLabel#statNumber {
-    color: #ffffff;
-    font-size: 27px;
-    font-weight: bold;
+    QLabel#dashboardStatNumber {
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: bold;
     }
 
-    QLabel#statDescription {
-    color: #a1a1aa;
-    font-size: 12px;
+    QLabel#dashboardStatDescription {
+        color: #a1a1aa;
+        font-size: 13px;
+    }
+    QLabel#dashboardStatIcon {
+        font-size: 24px;
     }
 
-    QLabel#sectionTitle {
-    color: #ffffff;
-    font-size: 19px;
-    font-weight: bold;
+    QFrame#dashboardWelcomeCard {
+        background-color: #24242f;
+        border: 1px solid #403951;
+        border-radius: 16px;
+    }
+
+    QLabel#dashboardBadge {
+        color: #a78bfa;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    QLabel#dashboardWelcomeTitle {
+        color: #ffffff;
+        font-size: 23px;
+        font-weight: bold;
+    }
+
+    QLabel#dashboardWelcomeText {
+        color: #b7b7c2;
+        font-size: 13px;
     }
 
     QPushButton#primaryButton {
         color: #ffffff;
-        background-color: #7665f5;
+        background-color: #7655cf;
         border: none;
-        border-radius: 8px;
-        padding: 0 18px;
+        border-radius: 9px;
+        padding: 12px 20px;
         font-size: 13px;
         font-weight: bold;
     }
 
     QPushButton#primaryButton:hover {
-        background-color: #897bff;
+        background-color: #896be0;
     }
 
     QPushButton#primaryButton:pressed {
-        background-color: #6252d8;
+        background-color: #6243b7;
     }
 
     QLabel#footer {
@@ -777,11 +918,17 @@ MainWindow::MainWindow(QWidget *parent)
         background-color: #17171a;
     }
 
-    QFrame#statCard,
-    QFrame#welcomeCard {
-        background-color: #232329;
-        border: 1px solid #34343d;
-        border-radius: 12px;
+
+
+
+
+
+
+
+    QLabel {
+        color: #d1d5db;
+        font-size: 13px;
+        font-weight: 600;
     }
 
     QLineEdit, QDateEdit, QComboBox {
@@ -896,6 +1043,67 @@ MainWindow::MainWindow(QWidget *parent)
     }
     QPushButton#resetButton:pressed {
         background-color: #272831;
+    }
+
+    QLineEdit#searchEdit {
+        color: #ffffff;
+        background-color: #202025;
+        border: 1px solid #41414b;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    QLineEdit#searchEdit:focus {
+        background-color: #262630;
+        border: 1px solid #a78bfa;
+    }
+    QLineEdit#searchEdit::placeholder {
+        color: #858591;
+    }
+
+
+
+
+
+
+    QTableWidget {
+        color: #e5e7eb;
+        background-color: #202025;
+        alternate-background-color: #262630;
+        selection-background-color: #514078;
+        selection-color: #ffffff;
+        border: 1px solid #34343b;
+        border-radius: 10px;
+        gridline-color: #383842;
+        font-size: 12px;
+
+        outline: none;
+    }
+    QHeaderView::section {
+        color: #a78bfa;
+        background-color: #292832;
+        padding: 13px 8px;
+
+        border: none;
+        border-bottom: 2px solid #a78bfa;
+
+        font-size: 12px;
+        font-weight: bold;
+    }
+    QTableWidget::item {
+        padding: 10px;
+        border-bottom: 1px solid #34343b;
+    }
+    QTableWidget::item:hover {
+        background-color: #302b3d;
+    }
+    QTableWidget::item:selected {
+        background-color: #514078;
+        color: #ffffff;
+    }
+    QHeaderView::section:vertical {
+        background-color: #202025;
+        border: none;
     }
 
     QPushButton#deleteButton {
