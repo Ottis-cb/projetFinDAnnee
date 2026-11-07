@@ -741,7 +741,14 @@ if (fichierLecture.exists()) {
         }
     });
 
+    //Autoriser le retour automatique à la ligne
+    tableEleves->setWordWrap(true);
 
+    //Ne pas remplacer le texte par des points de suspension
+    tableEleves->setTextElideMode(Qt::ElideNone);
+
+    //Adapter automatiquement la hauteur des lignes
+    tableEleves->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     //Ajouter le tableau au cadre
     tableLayout->addWidget(tableEleves);
@@ -789,6 +796,8 @@ if (fichierLecture.exists()) {
         fichier.close();
 
         actualiserStatistiques();
+
+
     };
 
 
