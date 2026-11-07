@@ -606,23 +606,23 @@
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "main.cpp",
+			"path" : "src/main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "mainwindow.cpp",
+			"path" : "src/mainwindow.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "mainwindow.h",
+			"path" : "src/mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
-			"path" : "mainwindow.ui",
+			"path" : "src/mainwindow.ui",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -633,7 +633,7 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/include/ui_mainwindow.h",
+			"path" : "build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/include/src/ui_mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{

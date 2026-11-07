@@ -90,48 +90,48 @@ CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\Projet_Fin_dAnnee_autogen\mocs_compilation.cpp -o CMakeFiles\Projet_Fin_dAnnee.dir\Projet_Fin_dAnnee_autogen\mocs_compilation.cpp.s
 
-CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/flags.make
-CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/includes_CXX.rsp
-CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj: C:/Users/Asus/Documents/Projet_Fin_dAnnee/main.cpp
-CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj -MF CMakeFiles\Projet_Fin_dAnnee.dir\main.cpp.obj.d -o CMakeFiles\Projet_Fin_dAnnee.dir\main.cpp.obj -c C:\Users\Asus\Documents\Projet_Fin_dAnnee\main.cpp
+CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/flags.make
+CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/includes_CXX.rsp
+CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj: C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/main.cpp
+CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj -MF CMakeFiles\Projet_Fin_dAnnee.dir\src\main.cpp.obj.d -o CMakeFiles\Projet_Fin_dAnnee.dir\src\main.cpp.obj -c C:\Users\Asus\Documents\Projet_Fin_dAnnee\src\main.cpp
 
-CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.i"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Asus\Documents\Projet_Fin_dAnnee\main.cpp > CMakeFiles\Projet_Fin_dAnnee.dir\main.cpp.i
+CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Asus\Documents\Projet_Fin_dAnnee\src\main.cpp > CMakeFiles\Projet_Fin_dAnnee.dir\src\main.cpp.i
 
-CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.s"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Asus\Documents\Projet_Fin_dAnnee\main.cpp -o CMakeFiles\Projet_Fin_dAnnee.dir\main.cpp.s
+CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Asus\Documents\Projet_Fin_dAnnee\src\main.cpp -o CMakeFiles\Projet_Fin_dAnnee.dir\src\main.cpp.s
 
-CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/flags.make
-CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/includes_CXX.rsp
-CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj: C:/Users/Asus/Documents/Projet_Fin_dAnnee/mainwindow.cpp
-CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj -MF CMakeFiles\Projet_Fin_dAnnee.dir\mainwindow.cpp.obj.d -o CMakeFiles\Projet_Fin_dAnnee.dir\mainwindow.cpp.obj -c C:\Users\Asus\Documents\Projet_Fin_dAnnee\mainwindow.cpp
+CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/flags.make
+CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/includes_CXX.rsp
+CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj: C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/mainwindow.cpp
+CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj: CMakeFiles/Projet_Fin_dAnnee.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj -MF CMakeFiles\Projet_Fin_dAnnee.dir\src\mainwindow.cpp.obj.d -o CMakeFiles\Projet_Fin_dAnnee.dir\src\mainwindow.cpp.obj -c C:\Users\Asus\Documents\Projet_Fin_dAnnee\src\mainwindow.cpp
 
-CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.i"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Asus\Documents\Projet_Fin_dAnnee\mainwindow.cpp > CMakeFiles\Projet_Fin_dAnnee.dir\mainwindow.cpp.i
+CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Asus\Documents\Projet_Fin_dAnnee\src\mainwindow.cpp > CMakeFiles\Projet_Fin_dAnnee.dir\src\mainwindow.cpp.i
 
-CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.s"
-	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Asus\Documents\Projet_Fin_dAnnee\mainwindow.cpp -o CMakeFiles\Projet_Fin_dAnnee.dir\mainwindow.cpp.s
+CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Asus\Documents\Projet_Fin_dAnnee\src\mainwindow.cpp -o CMakeFiles\Projet_Fin_dAnnee.dir\src\mainwindow.cpp.s
 
 # Object files for target Projet_Fin_dAnnee
 Projet_Fin_dAnnee_OBJECTS = \
 "CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.obj" \
-"CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj" \
-"CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj"
+"CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj" \
+"CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj"
 
 # External object files for target Projet_Fin_dAnnee
 Projet_Fin_dAnnee_EXTERNAL_OBJECTS =
 
 Projet_Fin_dAnnee.exe: CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.obj
-Projet_Fin_dAnnee.exe: CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj
-Projet_Fin_dAnnee.exe: CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj
+Projet_Fin_dAnnee.exe: CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj
+Projet_Fin_dAnnee.exe: CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj
 Projet_Fin_dAnnee.exe: CMakeFiles/Projet_Fin_dAnnee.dir/build.make
 Projet_Fin_dAnnee.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Widgets.a
 Projet_Fin_dAnnee.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Gui.a

@@ -223,53 +223,53 @@ Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s
 .PHONY : Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
+src/main.obj: src/main.cpp.obj
+.PHONY : src/main.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+src/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
-mainwindow.obj: mainwindow.cpp.obj
-.PHONY : mainwindow.obj
+src/mainwindow.obj: src/mainwindow.cpp.obj
+.PHONY : src/mainwindow.obj
 
 # target to build an object file
-mainwindow.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.obj
-.PHONY : mainwindow.cpp.obj
+src/mainwindow.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.obj
+.PHONY : src/mainwindow.cpp.obj
 
-mainwindow.i: mainwindow.cpp.i
-.PHONY : mainwindow.i
+src/mainwindow.i: src/mainwindow.cpp.i
+.PHONY : src/mainwindow.i
 
 # target to preprocess a source file
-mainwindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.i
-.PHONY : mainwindow.cpp.i
+src/mainwindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.i
+.PHONY : src/mainwindow.cpp.i
 
-mainwindow.s: mainwindow.cpp.s
-.PHONY : mainwindow.s
+src/mainwindow.s: src/mainwindow.cpp.s
+.PHONY : src/mainwindow.s
 
 # target to generate assembly for a file
-mainwindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/mainwindow.cpp.s
-.PHONY : mainwindow.cpp.s
+src/mainwindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.s
+.PHONY : src/mainwindow.cpp.s
 
 # Help Target
 help:
@@ -289,12 +289,12 @@ help:
 	@echo ... Projet_Fin_dAnnee_autogen/mocs_compilation.obj
 	@echo ... Projet_Fin_dAnnee_autogen/mocs_compilation.i
 	@echo ... Projet_Fin_dAnnee_autogen/mocs_compilation.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
-	@echo ... mainwindow.obj
-	@echo ... mainwindow.i
-	@echo ... mainwindow.s
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
+	@echo ... src/mainwindow.obj
+	@echo ... src/mainwindow.i
+	@echo ... src/mainwindow.s
 .PHONY : help
 
 

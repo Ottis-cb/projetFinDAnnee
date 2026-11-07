@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Projet_Fin_dAnnee_autogen"
-  "Projet_Fin_dAnnee_autogen/include/ui_mainwindow.h"
+  "Projet_Fin_dAnnee_autogen/include/src/ui_mainwindow.h"
   "Projet_Fin_dAnnee_autogen/mocs_compilation.cpp"
   "Projet_Fin_dAnnee_autogen/timestamp"
 )
