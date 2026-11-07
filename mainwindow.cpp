@@ -1,4 +1,3 @@
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFrame>
@@ -68,6 +67,30 @@ MainWindow::MainWindow(QWidget *parent)
     inscription->setObjectName("menuButton");
     eleves->setObjectName("menuButton");
 
+
+
+    //Fonction pour gérer le bouton actif
+    auto changerMenuActif = [=](QPushButton *boutonActif)
+    {
+        //Réinitialiser les trois boutons
+        accueil->setObjectName("menuButton");
+        inscription->setObjectName("menuButton");
+        eleves->setObjectName("menuButton");
+
+        boutonActif->setObjectName("activeMenu");
+
+        //Actualiser le style QSS
+        accueil->style()->unpolish(accueil);
+        accueil->style()->polish(accueil);
+
+        inscription->style()->unpolish(inscription);
+        inscription->style()->polish(inscription);
+
+        eleves->style()->unpolish(eleves);
+        eleves->style()->polish(eleves);
+    };
+
+
     for (QPushButton *button: {accueil, inscription, eleves})
     {
         button->setMinimumHeight(44);
@@ -79,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     QLabel *version = new QLabel("Gestion scolaire\nVersion 1.0");
     version->setObjectName("version");
     sideLayout->addWidget(version);
+
 
 
     //zone principale
@@ -103,7 +127,6 @@ MainWindow::MainWindow(QWidget *parent)
     contentLayout->setContentsMargins(30, 24, 30, 24);
     contentLayout->setSpacing(22);
 
-
     //en-tete
     QHBoxLayout *headerLayout = new QHBoxLayout;
     QVBoxLayout *headingLayout = new QVBoxLayout;
@@ -124,7 +147,6 @@ MainWindow::MainWindow(QWidget *parent)
     headerLayout->addLayout(headingLayout);
     headerLayout->addWidget(profileButton);
     contentLayout->addLayout(headerLayout);
-
 
     //Carte statistique
     QGridLayout *statsLayout = new QGridLayout;
@@ -169,7 +191,7 @@ MainWindow::MainWindow(QWidget *parent)
     };
 
     //Création des trois cartes
-    statsLayout->addWidget(createCard("TOTAL", "0", "Total des élèves", "#a78bfa", totalNumber), 0, 0);
+    statsLayout->addWidget(createCard("TOTAL", "0", "Total des élèves", "#38bdf8", totalNumber), 0, 0);
 
     statsLayout->addWidget(createCard(QString(QChar(0x2642)), "0", "Garçons", "#60a5fa", garçonsNumber), 0, 1);
 
@@ -217,6 +239,7 @@ MainWindow::MainWindow(QWidget *parent)
             }
             fichier.close();
         }
+
         //Actualiser les trois nombres affichés
 
         totalNumber->setText(QString::number(total));
@@ -229,7 +252,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    //6. panneau de bienvenu
+    // panneau de bienvenu
     QFrame *welcomeCard = new QFrame;
 
     welcomeCard->setObjectName("dashboardWelcomeCard");
@@ -277,6 +300,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //ajouter la page d'acceuil
     pages->addWidget(dashboardPage);
+
 
 
 
@@ -363,9 +387,6 @@ MainWindow::MainWindow(QWidget *parent)
     //Conteneur horizontal pour les boutons
     QHBoxLayout *buttonLayout = new QHBoxLayout;
 
-
-
-
     //creation des trois boutons
     QPushButton *saveButton = new QPushButton("Enregistrer");
     QPushButton *resetButton = new QPushButton("Réinitialiser");
@@ -405,6 +426,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(cancelButton, &QPushButton::clicked, this, [=](){
         pages->setCurrentWidget(dashboardPage);
         actualiserStatistiques();
+        changerMenuActif(accueil);
     });
 
     //Enregistrer
@@ -424,6 +446,138 @@ MainWindow::MainWindow(QWidget *parent)
             QMessageBox::warning(this, "formulaire incomplet","Veuillez remplir tous les champs obligatoires.");
             return;
         }
+
+
+
+// VALIDATION DU MATRICULE
+
+// Refuser les caractères qui pourraient casser le fichier
+if (matricule.contains(';') ||
+    matricule.contains('\n') ||
+    matricule.contains('\r')) {
+
+    QMessageBox::warning(this, "Matricule invalide",
+                         "Le matricule contient des caractères interdits.");
+    return;
+}
+
+
+// VALIDATION DU NOM ET PRENOM
+
+// Accepter les lettres, accents, espaces,
+// apostrophes et tirets.
+QRegularExpression expressionNom(
+    QStringLiteral("^[\\p{L}][\\p{L} '\\-]*$")
+);
+
+if (!expressionNom.match(nom).hasMatch()) {
+
+    QMessageBox::warning(this, "Nom invalide",
+                         "Le nom contient des caractères invalides.");
+    return;
+}
+
+if (!expressionNom.match(prenom).hasMatch()) {
+
+    QMessageBox::warning(this, "Prénom invalide",
+                         "Le prénom contient des caractères invalides.");
+    return;
+}
+
+
+// VALIDATION DE LA DATE DE NAISSANCE
+
+
+if (dateEdit->date() > QDate::currentDate()) {
+
+    QMessageBox::warning(this, "Date invalide",
+                         "La date de naissance ne peut pas être dans le futur.");
+    return;
+}
+
+
+// VALIDATION DU TELEPHONE MALAGASY
+
+// Supprimer les espaces, tirets et parenthèses
+QString telephoneNettoye = telephone;
+telephoneNettoye.remove(' ');
+telephoneNettoye.remove('-');
+telephoneNettoye.remove('(');
+telephoneNettoye.remove(')');
+
+// Vérifier le format national ou international
+QRegularExpression expressionTelephone(
+    "^(03[2348][0-9]{7}|\\+2613[2348][0-9]{7})$"
+);
+
+if (!expressionTelephone.match(telephoneNettoye).hasMatch()) {
+
+    QMessageBox::warning(this, "Téléphone invalide",
+                         "Veuillez saisir un numéro malgache valide.\n"
+                         "Exemple : 0380615517 ou +261380615517.");
+    return;
+}
+
+
+// VERIFICATION DES DOUBLONS
+QFile fichierLecture("eleves.txt");
+
+if (fichierLecture.exists()) {
+
+    if (!fichierLecture.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+        QMessageBox::critical(this, "Erreur",
+                              "Impossible de vérifier les inscriptions existantes.");
+        return;
+    }
+
+    QTextStream entree(&fichierLecture);
+
+    while (!entree.atEnd()) {
+
+        QString ligne = entree.readLine();
+        QStringList informations = ligne.split(';');
+
+        if (informations.size() != 8)
+            continue;
+
+        QString ancienMatricule = informations.at(0).trimmed();
+        QString ancienNom = informations.at(1).trimmed();
+        QString ancienPrenom = informations.at(2).trimmed();
+        QString ancienneDate = informations.at(3).trimmed();
+
+        // Comparaison du matricule sans tenir compte
+        // des majuscules et minuscules.
+        if (ancienMatricule.compare(
+                matricule, Qt::CaseInsensitive) == 0) {
+
+            fichierLecture.close();
+
+            QMessageBox::warning(this, "Matricule déjà utilisé",
+                                 "Ce numéro matricule existe déjà.");
+
+            return;
+        }
+
+        // Comparaison de l'identité
+        if (ancienNom.simplified().toCaseFolded()
+                == nom.simplified().toCaseFolded() &&
+            ancienPrenom.simplified().toCaseFolded()
+                == prenom.simplified().toCaseFolded() &&
+            ancienneDate == dateNaissance) {
+
+            fichierLecture.close();
+
+            QMessageBox::warning(this, "Élève déjà inscrit",
+                                 "Un élève avec le même nom, prénom "
+                                 "et date de naissance existe déjà.");
+
+            return;
+        }
+    }
+
+    fichierLecture.close();
+}
 
         //Ouvrir le fichier en mode ajout
         QFile fichier("eleves.txt");
@@ -454,17 +608,18 @@ MainWindow::MainWindow(QWidget *parent)
      });
 
 
-
     //Enregistrer la page d'inscription
     pages->addWidget(inscriptionPage);
 
 
-    //PAGE LISTE DES ELEVES
 
+
+
+
+    //PAGE LISTE DES ELEVES
 
     QWidget *elevesPage = new QWidget;
     elevesPage->setObjectName("content");
-
 
     //layout principal de la page
     QVBoxLayout *elevesLayout = new QVBoxLayout(elevesPage);
@@ -529,7 +684,6 @@ MainWindow::MainWindow(QWidget *parent)
     //Interdire la modification directe des cellules
     tableEleves->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-
     tableEleves->setWordWrap(true);
     tableEleves->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
@@ -586,9 +740,6 @@ MainWindow::MainWindow(QWidget *parent)
             tableEleves->setRowHidden(ligne, ! correspondance);
         }
     });
-
-
-
 
 
 
@@ -690,11 +841,13 @@ MainWindow::MainWindow(QWidget *parent)
 
         fichier.close();
 
+
         //Réecrire le fichier sans l'élève supprimé
         if(!fichier.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)){
             QMessageBox::critical(this, "Erreur", "Impossible de modifier le fichier.");
             return;
         }
+
 
         QTextStream sortie(&fichier);
         for (const QString &ligneTexte : lignes){
@@ -704,6 +857,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         //Actualiser le tableau
         chargerEleves();
+
 
         QMessageBox::information(this, "Suppression réussi", "L'élève a été supprimé.");
         actualiserStatistiques();
@@ -721,28 +875,29 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
-
-
     //Navigation entre les pages
     //cliquer sur Accueil
-    connect(accueil, &QPushButton::clicked, this, [pages, dashboardPage](){
+    connect(accueil, &QPushButton::clicked, this, [=](){
         pages->setCurrentWidget(dashboardPage);
+        changerMenuActif(accueil);
     });
 
     //Cliquer sur inscription
-    connect(inscription, &QPushButton::clicked, this, [pages, inscriptionPage](){
+    connect(inscription, &QPushButton::clicked, this, [=](){
         pages->setCurrentWidget(inscriptionPage);
+        changerMenuActif(inscription);
     });
     //Cliquer sur liste des eleves
-    connect(eleves, &QPushButton::clicked, this, [pages, elevesPage, chargerEleves](){
+    connect(eleves, &QPushButton::clicked, this, [=](){
         chargerEleves();
         pages->setCurrentWidget(elevesPage);
+        changerMenuActif(eleves);
     });
 
     //Cliquer sur le bouton de la page d'acceuil
-    connect(newStudent, &QPushButton::clicked, this, [pages, inscriptionPage](){
+    connect(newStudent, &QPushButton::clicked, this, [=](){
         pages->setCurrentWidget(inscriptionPage);
+        changerMenuActif(inscription);
     });
 
 
@@ -753,375 +908,566 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
-
-
     //Style global QSS
     setStyleSheet(R"(
 
-    QMainWindow {
-        background-color: #17171a;
-    }
+/* FENETRE PRINCIPALE */
 
-    QWidget#content {
-        background-color: #17171a;
-    }
+QMainWindow {
+    background-color: #171B22;
+}
 
-    QFrame#sidebar {
-        background-color: #202025;
-        border-right: 1px solid #34343b;
-    }
-
-    QLabel#logo {
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: bold;
-        padding-bottom: 22px;
-    }
-
-    QLabel#menuTitle {
-        color: #858591;
-        font-size: 10px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-
-    QPushButton#menuButton,
-    QPushButton#activeMenu {
-        text-align: left;
-        padding-left: 12px;
-        border: none;
-        border-radius: 8px;
-        font-size: 13px;
-    }
-
-    QPushButton#menuButton {
-        color: #b8b8c2;
-        background-color: transparent;
-    }
-
-    QPushButton#menuButton:hover {
-        color: #ffffff;
-        background-color: #2d2d35;
-    }
-
-    QPushButton#activeMenu {
-        color: #ffffff;
-        background-color: #39324f;
-        font-weight: bold;
-    }
-
-    QLabel#version {
-        color: #777783;
-        font-size: 11px;
-        padding-top: 12px
-    }
-
-    QLabel#heading {
-        color: #ffffff;
-        font-size: 27px;
-        font-weight: bold;
-    }
-
-    QLabel#subtitle {
-        color: #a1a1aa;
-        font-size: 13px;
-    }
-
-    QPushButton#profileButton {
-        color: #e4e4e7;
-        background-color: #25252c;
-        border: 1px solid #3a3a43;
-        border-radius: 8px;
-        padding: 0 14px;
-    }
-
-    QFrame#dashboardStatCard {
-        background-color: #23232b;
-        border: 1px solid #343440;
-        border-radius: 14px;
-    }
-    QFrame#dashboardStatCard:hover {
-        background-color: #292936;
-        border: 1px solid #8060d8;
-    }
-
-    QLabel#dashboardStatNumber {
-        color: #ffffff;
-        font-size: 30px;
-        font-weight: bold;
-    }
-
-    QLabel#dashboardStatDescription {
-        color: #a1a1aa;
-        font-size: 13px;
-    }
-    QLabel#dashboardStatIcon {
-        font-size: 24px;
-    }
-
-    QFrame#dashboardWelcomeCard {
-        background-color: #24242f;
-        border: 1px solid #403951;
-        border-radius: 16px;
-    }
-
-    QLabel#dashboardBadge {
-        color: #a78bfa;
-        font-size: 10px;
-        font-weight: bold;
-        letter-spacing: 2px;
-    }
-
-    QLabel#dashboardWelcomeTitle {
-        color: #ffffff;
-        font-size: 23px;
-        font-weight: bold;
-    }
-
-    QLabel#dashboardWelcomeText {
-        color: #b7b7c2;
-        font-size: 13px;
-    }
-
-    QPushButton#primaryButton {
-        color: #ffffff;
-        background-color: #7655cf;
-        border: none;
-        border-radius: 9px;
-        padding: 12px 20px;
-        font-size: 13px;
-        font-weight: bold;
-    }
-
-    QPushButton#primaryButton:hover {
-        background-color: #896be0;
-    }
-
-    QPushButton#primaryButton:pressed {
-        background-color: #6243b7;
-    }
-
-    QLabel#footer {
-        color: #777783;
-        font-size: 11px;
-        padding-top: 8px;
-    }
-
-    QStatusBar {
-        color: #c4c4cc;
-        background-color: #202025;
-    }
-
-    QWidget#contentArea,
-    QWidget#content {
-        background-color: #17171a;
-    }
+QWidget#content,
+QWidget#contentArea {
+    background-color: #171B22;
+}
 
 
 
 
+/*  BARRE LATERALE  */
+
+QFrame#sidebar {
+    background-color: #202833;
+    border-right: 1px solid #344256;
+}
+
+QLabel#logo {
+    color: #F8FAFC;
+    font-size: 21px;
+    font-weight: bold;
+    padding-bottom: 22px;
+}
+
+QLabel#menuTitle {
+    color: #64748B;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+QLabel#version {
+    color: #64748B;
+    font-size: 11px;
+    padding-top: 10px;
+}
 
 
 
 
-    QLabel {
-        color: #d1d5db;
-        font-size: 13px;
-        font-weight: 600;
-    }
+/* NAVIGATION */
 
-    QLineEdit, QDateEdit, QComboBox {
-        color: #f4f4f5;
-        background-color: #1d1d23;
-        border: 1px solid #41414b;
-        border-radius: 8px;
-        padding: 10px 12px;
-        min-height: 22px;
-        selection-background-color: #7665f5;
-    }
+QPushButton#menuButton {
+    background-color: transparent;
+    color: #94A3B8;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
 
-    QLineEdit:focus, QDateEdit:focus, QComboBox:focus {
-        border: 1px solid #897bff;
-        background-color: #22222a;
-    }
+QPushButton#menuButton:hover {
+    background-color: #283547;
+    color: #FFFFFF;
+}
 
-    QLineEdit:hover, QDateEdit:hover, QComboBox:hover{
-        border-color: #6252d8;
-    }
-
-    QComboBox QAbstractItemView {
-        color: #f4f4f5;
-        background-color: #232329;
-        border: 1px solid #41414b;
-        outline: none;
-    }
-
-    QFormLayout QLabel {
-        color: #d4d4dc;
-        font-size: 13px;
-    }
-
-    QPushButton {
-        border-radius: 8px;
-        padding: 10px 16px;
-        font-size: 13px;
-    }
-
-    QPushButton#primaryButton{
-        color: white;
-        background-color: #7665f5;
-        border: none;
-        font-weight: bold;
-    }
-    QPushButton#primaryButton:hover{
-        background-color: #897bff;
-    }
-    QPushButton#primaryButton:pressed{
-        background-color: #6252d8;
-    }
-
-    QCalendarWidget QWidget{
-        color: #f4f4f5;
-        background-color: #232329;
-    }
-    QCalendarWidget QToolButton{
-        color: white;
-        background-color: #303039;
-    }
-
-    QPushButton#saveButton {
-        color: white;
-        background-color: #3978e8;
-        border: none;
-        border-radius: 9px;
-        padding: 12px 24px;
-        font-size: 14px;
-        font-weight: 600;
-        min-width: 120px;
-    }
-    QPushButton#saveButton:hover {
-        background-color: #2865d4;
-    }
-    QPushButton#saveButton:pressed {
-        background-color: #1e50b0;
-    }
-
-
-    QPushButton#resetButton {
-        color: #e5e7eb;
-        background-color: #30313a;
-        border: 1px solid #41424d;
-        border-radius: 9px;
-        padding: 12px 20px;
-        font-size: 14px;
-        font-weight: 500;
-        min-width: 120px;
-    }
-    QPushButton#resetButton:hover {
-        background-color: #3c3d48;
-        border-color: #626474;
-    }
-    QPushButton#resetButton:pressed {
-        background-color: #272831;
-    }
-
-    QPushButton#cancelButton {
-        color: #a1a1aa;
-        background-color: transparent;
-        border: 1px solid #41424d;
-        border-radius: 9px;
-        padding: 12px 20px;
-        font-size: 14px;
-        font-weight: 500;
-        min-width: 100px;
-    }
-    QPushButton#cancelButton:hover {
-        color: white;
-        background-color: #30313a;
-        border-color: #626474;
-    }
-    QPushButton#resetButton:pressed {
-        background-color: #272831;
-    }
-
-    QLineEdit#searchEdit {
-        color: #ffffff;
-        background-color: #202025;
-        border: 1px solid #41414b;
-        border-radius: 10px;
-        padding: 10px 14px;
-        font-size: 13px;
-    }
-    QLineEdit#searchEdit:focus {
-        background-color: #262630;
-        border: 1px solid #a78bfa;
-    }
-    QLineEdit#searchEdit::placeholder {
-        color: #858591;
-    }
+QPushButton#activeMenu {
+    background-color: #263B56;
+    color: #60A5FA;
+    border: none;
+    border-left: 4px solid #3B82F6;
+    border-radius: 9px;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+}
 
 
 
 
+/* TITRES ET TEXTES */
+
+QLabel#heading {
+    color: #F1F5F9;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+QLabel#subtitle {
+    color: #94A3B8;
+    font-size: 13px;
+}
+
+QLabel#footer {
+    color: #64748B;
+    font-size: 11px;
+}
+
+QLabel#sectionTitle {
+    color: #F1F5F9;
+    font-size: 22px;
+    font-weight: bold;
+}
 
 
-    QTableWidget {
-        color: #e5e7eb;
-        background-color: #202025;
-        alternate-background-color: #262630;
-        selection-background-color: #514078;
-        selection-color: #ffffff;
-        border: 1px solid #34343b;
-        border-radius: 10px;
-        gridline-color: #383842;
-        font-size: 12px;
 
-        outline: none;
-    }
-    QHeaderView::section {
-        color: #a78bfa;
-        background-color: #292832;
-        padding: 13px 8px;
 
-        border: none;
-        border-bottom: 2px solid #a78bfa;
+/* CARTES DU TABLEAU DE BORD */
 
-        font-size: 12px;
-        font-weight: bold;
-    }
-    QTableWidget::item {
-        padding: 10px;
-        border-bottom: 1px solid #34343b;
-    }
-    QTableWidget::item:hover {
-        background-color: #302b3d;
-    }
-    QTableWidget::item:selected {
-        background-color: #514078;
-        color: #ffffff;
-    }
-    QHeaderView::section:vertical {
-        background-color: #202025;
-        border: none;
-    }
+QFrame#dashboardStatCard {
+    background-color: #202833;
+    border: 1px solid #344256;
+    border-radius: 14px;
+}
 
-    QPushButton#deleteButton {
-        color: white;
-        background-color: #dc4545;
-        border: none;
-        border-radius: 9px;
-        padding: 12px 20px;
-        font-size: 14px;
-        font-weight: 600;
-        min-width: 120px;
-    }
-    QPushButton#deleteButton:hover {
-        background-color: #ef5555;
-    }
-    QPushButton#deleteButton:pressed {
-        background-color: #b83232;
-    }
+QFrame#dashboardStatCard:hover {
+    border: 1px solid #3B82F6;
+    background-color: #243142;
+}
+
+QLabel#dashboardStatIcon {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+QLabel#dashboardStatNumber {
+    color: #F8FAFC;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+QLabel#dashboardStatDescription {
+    color: #94A3B8;
+    font-size: 13px;
+}
+
+
+
+
+/*  PANNEAU DE BIENVENUE */
+
+QFrame#dashboardWelcomeCard,
+QFrame#welcomeCard {
+    background-color: #202833;
+    border: 1px solid #344256;
+    border-radius: 14px;
+}
+
+QLabel#dashboardBadge {
+    color: #38BDF8;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+QLabel#dashboardWelcomeTitle {
+    color: #F8FAFC;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+QLabel#dashboardWelcomeText {
+    color: #94A3B8;
+    font-size: 14px;
+}
+
+
+
+
+/* BOUTONS PRINCIPAUX */
+
+QPushButton#primaryButton,
+QPushButton#saveButton {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton#primaryButton:hover,
+QPushButton#saveButton:hover {
+    background-color: #2563EB;
+}
+
+QPushButton#primaryButton:pressed,
+QPushButton#saveButton:pressed {
+    background-color: #1D4ED8;
+}
+
+
+
+
+/* BOUTON ADMINISTRATION */
+
+QPushButton#profileButton {
+    background-color: #283547;
+    color: #CBD5E1;
+    border: 1px solid #3B4B60;
+    border-radius: 9px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QPushButton#profileButton:hover {
+    background-color: #34465D;
+    color: #FFFFFF;
+    border: 1px solid #3B82F6;
+}
+
+
+
+
+/* BOUTONS SECONDAIRES */
+
+QPushButton#resetButton,
+QPushButton#cancelButton {
+    background-color: #303B4A;
+    color: #CBD5E1;
+    border: 1px solid #405066;
+    border-radius: 9px;
+    padding: 11px 19px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QPushButton#resetButton:hover,
+QPushButton#cancelButton:hover {
+    background-color: #3A485A;
+    color: #FFFFFF;
+}
+
+QPushButton#resetButton:pressed,
+QPushButton#cancelButton:pressed {
+    background-color: #253143;
+}
+
+
+
+
+/* BOUTON SUPPRIMER */
+
+QPushButton#deleteButton {
+    background-color: #C83F4B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9px;
+    padding: 11px 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+QPushButton#deleteButton:hover {
+    background-color: #E04B57;
+}
+
+QPushButton#deleteButton:pressed {
+    background-color: #A92F3A;
+}
+
+
+
+
+/* CHAMPS DU FORMULAIRE  */
+
+QLineEdit,
+QDateEdit,
+QComboBox {
+    background-color: #171F2B;
+    color: #E2E8F0;
+    border: 1px solid #3B485A;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    selection-background-color: #3B82F6;
+    selection-color: #FFFFFF;
+}
+
+QLineEdit:hover,
+QDateEdit:hover,
+QComboBox:hover {
+    border: 1px solid #64748B;
+}
+
+QLineEdit:focus,
+QDateEdit:focus,
+QComboBox:focus {
+    border: 2px solid #3B82F6;
+    background-color: #202B3A;
+}
+
+QLineEdit:disabled,
+QDateEdit:disabled,
+QComboBox:disabled {
+    color: #64748B;
+    background-color: #202833;
+}
+
+
+
+
+/*  ETIQUETTES DU FORMULAIRE */
+
+QLabel#formLabel {
+    color: #60A5FA;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px;
+}
+QLabel {
+    color: #CBD5E1;
+    background-color: transparent;
+}
+
+QLabel#titleLabel {
+    color: #F8FAFC;
+    font-weight: bold;
+}
+
+QLabel#subtitleLabel {
+    color: #94A3B8;
+}
+
+
+
+
+/* LISTE DEROULANTE */
+
+QComboBox::drop-down {
+    border: none;
+    width: 28px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #202833;
+    color: #E2E8F0;
+    border: 1px solid #3B82F6;
+    selection-background-color: #263B56;
+    selection-color: #60A5FA;
+    padding: 5px;
+}
+
+
+
+
+/* CALENDRIER */
+
+QCalendarWidget QWidget {
+    background-color: #202833;
+    color: #E2E8F0;
+}
+
+QCalendarWidget QToolButton {
+    background-color: #283547;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QCalendarWidget QToolButton:hover {
+    background-color: #3B82F6;
+}
+
+QCalendarWidget QAbstractItemView {
+    background-color: #171F2B;
+    color: #E2E8F0;
+    selection-background-color: #3B82F6;
+    selection-color: #FFFFFF;
+}
+
+
+
+
+/* BARRE DE RECHERCHE */
+
+QLineEdit#searchEdit {
+    background-color: #202833;
+    color: #F1F5F9;
+    border: 1px solid #3B485A;
+    border-radius: 11px;
+    padding: 12px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    selection-background-color: #3B82F6;
+    selection-color: #FFFFFF;
+}
+
+QLineEdit#searchEdit:hover {
+    border: 1px solid #64748B;
+    background-color: #243142;
+}
+
+QLineEdit#searchEdit:focus {
+    border: 2px solid #3B82F6;
+    background-color: #202B3A;
+}
+
+QLineEdit#searchEdit QToolButton {
+    background-color: transparent;
+    color: #60A5FA;
+    border: none;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+QLineEdit#searchEdit QToolButton:hover {
+    background-color: #34465D;
+    color: #FFFFFF;
+}
+
+
+
+
+/* TABLEAU DES ELEVES */
+
+QTableWidget {
+    background-color: #202833;
+    alternate-background-color: #252F3D;
+    color: #E2E8F0;
+
+    border: 1px solid #344256;
+    border-radius: 10px;
+
+    gridline-color: #344256;
+    outline: none;
+
+    font-size: 12px;
+
+    selection-background-color: #294B73;
+    selection-color: #FFFFFF;
+}
+
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #344256;
+}
+
+QTableWidget::item:hover {
+    background-color: #2C3B50;
+}
+
+QTableWidget::item:selected {
+    background-color: #294B73;
+    color: #FFFFFF;
+}
+
+
+
+
+/* EN-TETES DU TABLEAU */
+
+QHeaderView::section {
+    background-color: #283547;
+    color: #60A5FA;
+
+    padding: 13px 8px;
+    border: none;
+    border-bottom: 2px solid #3B82F6;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+QHeaderView::section:vertical {
+    background-color: #202833;
+    border: none;
+}
+
+
+
+
+/* BARRE DE DEFILEMENT */
+
+QScrollBar:vertical {
+    background-color: #171B22;
+    width: 9px;
+    border: none;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #405066;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #3B82F6;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+QScrollBar:horizontal {
+    background-color: #171B22;
+    height: 9px;
+    border: none;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #405066;
+    border-radius: 4px;
+    min-width: 30px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #3B82F6;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0;
+}
+
+
+
+
+/* BOITES DE DIALOGUE */
+
+QMessageBox {
+    background-color: #202833;
+}
+
+QMessageBox QLabel {
+    color: #E2E8F0;
+    font-size: 13px;
+}
+
+QMessageBox QPushButton {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 7px;
+    padding: 8px 18px;
+    min-width: 75px;
+    font-weight: bold;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #2563EB;
+}
+
+
+
+
+/* TOOLTIP */
+
+QToolTip {
+    background-color: #283547;
+    color: #F8FAFC;
+    border: 1px solid #3B82F6;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 11px;
+}
     )");
 
 }
