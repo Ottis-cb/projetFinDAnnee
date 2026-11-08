@@ -13,10 +13,30 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
+        # Point d'entrée et fenêtre principale
         src/main.cpp
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+
+        # Couche données (accès au fichier eleves.txt)
+        src/data/eleverepository.cpp
+        src/data/eleverepository.h
+
+        # Composants réutilisables
+        src/widgets/sidebar.cpp
+        src/widgets/sidebar.h
+
+        # Pages de l'application
+        src/pages/dashboardpage.cpp
+        src/pages/dashboardpage.h
+        src/pages/inscriptionpage.cpp
+        src/pages/inscriptionpage.h
+        src/pages/listeelevespage.cpp
+        src/pages/listeelevespage.h
+
+        # Ressources (feuille de style)
+        resources/resources.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -43,6 +63,9 @@ else()
 endif()
 
 target_link_libraries(Projet_Fin_dAnnee PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+# Permet d'écrire #include "pages/dashboardpage.h" depuis n'importe quel fichier
+target_include_directories(Projet_Fin_dAnnee PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

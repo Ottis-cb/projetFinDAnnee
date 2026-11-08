@@ -1,20 +1,20 @@
 {
 	"AUTOGEN_COMMAND_LINE_LENGTH_MAX" : 32000,
-	"BUILD_DIR" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen",
-	"CMAKE_BINARY_DIR" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee",
+	"BUILD_DIR" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee",
 	"CMAKE_EXECUTABLE" : "C:/Qt/Tools/CMake_64/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/CMakeLists.txt",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/qtcreator-project.cmake",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/package-manager.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/CMakeLists.txt",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/qtcreator-project.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/package-manager.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystem.cmake.in",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeMinGWFindMake.cmake",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake",
@@ -67,7 +67,7 @@
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake",
@@ -82,7 +82,7 @@
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeDetermineRCCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeRCCompiler.cmake.in",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeRCInformation.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeTestRCCompiler.cmake",
@@ -99,7 +99,7 @@
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in",
-		"C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake",
 		"C:/Qt/6.12.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"C:/Qt/6.12.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
@@ -407,24 +407,55 @@
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"C:/Qt/6.12.0/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
-		"C:/Qt/6.12.0/mingw_64/lib/cmake/Qt6/windows/app.exe.manifest.in"
+		"C:/Qt/6.12.0/mingw_64/lib/cmake/Qt6/windows/app.exe.manifest.in",
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/resources/resources.qrc"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee",
+	"CMAKE_SOURCE_DIR" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee",
 	"CROSS_CONFIG" : false,
-	"DEP_FILE" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/deps",
+	"DEP_FILE" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "Projet_Fin_dAnnee_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/mainwindow.h",
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/data/eleverepository.h",
+			"MU",
+			"SG3YC7EIDC/moc_eleverepository.cpp",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/mainwindow.h",
 			"MU",
 			"UVLADIE3JM/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/dashboardpage.h",
+			"MU",
+			"V5LNE4NMWJ/moc_dashboardpage.cpp",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/inscriptionpage.h",
+			"MU",
+			"V5LNE4NMWJ/moc_inscriptionpage.cpp",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/listeelevespage.h",
+			"MU",
+			"V5LNE4NMWJ/moc_listeelevespage.cpp",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/widgets/sidebar.h",
+			"MU",
+			"RZ4CM6YYJ6/moc_sidebar.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/include",
-	"MOC_COMPILATION_FILE" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
@@ -449,6 +480,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src",
 		"C:/Qt/6.12.0/mingw_64/include/QtCore",
 		"C:/Qt/6.12.0/mingw_64/include",
 		"C:/Qt/6.12.0/mingw_64/mkspecs/win32-g++",
@@ -481,22 +513,47 @@
 		"-c",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 2,
-	"PARSE_CACHE_FILE" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/Projet_Fin_dAnnee_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/Projet_Fin_dAnnee_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/Qt/6.12.0/mingw_64/bin/moc.exe",
 	"QT_UIC_EXECUTABLE" : "C:/Qt/6.12.0/mingw_64/bin/uic.exe",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 12,
-	"SETTINGS_FILE" : "C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/Projet_Fin_dAnnee_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/Projet_Fin_dAnnee_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/main.cpp", "MU", null ],
 		[
-			"C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/mainwindow.cpp",
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/data/eleverepository.cpp",
+			"MU",
+			null
+		],
+		[ "C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/main.cpp", "MU", null ],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/dashboardpage.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/inscriptionpage.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/listeelevespage.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/widgets/sidebar.cpp",
 			"MU",
 			null
 		]

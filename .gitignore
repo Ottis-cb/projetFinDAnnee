@@ -1,0 +1,15 @@
+# Dossiers générés par Qt Creator / CMake
+build/
+build-*/
+.qtcreator/
+*.user
+CMakeLists.txt.user*
+
+# Fichiers compilés
+*.exe
+*.o
+*.obj
+*.a
+
+# Données locales des élèves
+eleves.txt

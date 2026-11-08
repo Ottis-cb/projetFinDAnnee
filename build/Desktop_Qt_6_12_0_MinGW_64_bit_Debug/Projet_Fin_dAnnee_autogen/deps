@@ -1,4 +1,7 @@
 Projet_Fin_dAnnee_autogen/timestamp: \
+	C:/Qt/6.12.0/mingw_64/include/QtCore/QList \
+	C:/Qt/6.12.0/mingw_64/include/QtCore/QString \
+	C:/Qt/6.12.0/mingw_64/include/QtCore/QStringList \
 	C:/Qt/6.12.0/mingw_64/include/QtCore/q17memory.h \
 	C:/Qt/6.12.0/mingw_64/include/QtCore/q20bit.h \
 	C:/Qt/6.12.0/mingw_64/include/QtCore/q20functional.h \
@@ -154,7 +157,10 @@ Projet_Fin_dAnnee_autogen/timestamp: \
 	C:/Qt/6.12.0/mingw_64/include/QtGui/qtransform.h \
 	C:/Qt/6.12.0/mingw_64/include/QtGui/qwindowdefs.h \
 	C:/Qt/6.12.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+	C:/Qt/6.12.0/mingw_64/include/QtWidgets/QFrame \
 	C:/Qt/6.12.0/mingw_64/include/QtWidgets/QMainWindow \
+	C:/Qt/6.12.0/mingw_64/include/QtWidgets/QWidget \
+	C:/Qt/6.12.0/mingw_64/include/QtWidgets/qframe.h \
 	C:/Qt/6.12.0/mingw_64/include/QtWidgets/qmainwindow.h \
 	C:/Qt/6.12.0/mingw_64/include/QtWidgets/qsizepolicy.h \
 	C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtabwidget.h \
@@ -656,16 +662,27 @@ Projet_Fin_dAnnee_autogen/timestamp: \
 	C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
 	C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
 	C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/CMakeLists.txt \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/package-manager.cmake \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/qtcreator-project.cmake \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/moc_predefs.h \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/main.cpp \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/mainwindow.cpp \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/mainwindow.h \
-	C:/Users/Asus/Documents/Projet_Fin_dAnnee/src/mainwindow.ui \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/CMakeLists.txt \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/package-manager.cmake \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qtcreator/cmake-helper/qtcreator-project.cmake \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/Projet_Fin_dAnnee_autogen/moc_predefs.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/resources/resources.qrc \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/data/eleverepository.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/data/eleverepository.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/main.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/mainwindow.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/mainwindow.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/dashboardpage.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/dashboardpage.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/inscriptionpage.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/inscriptionpage.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/listeelevespage.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/pages/listeelevespage.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/widgets/sidebar.cpp \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/widgets/sidebar.h \
+	C:/Users/Asus/Downloads/Projet_Fin_dAnnee/src/mainwindow.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

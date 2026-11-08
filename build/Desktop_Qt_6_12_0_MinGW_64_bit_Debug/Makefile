@@ -56,10 +56,10 @@ RM = C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Asus\Documents\Projet_Fin_dAnnee
+CMAKE_SOURCE_DIR = C:\Users\Asus\Downloads\Projet_Fin_dAnnee
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug
+CMAKE_BINARY_DIR = C:\Users\Asus\Downloads\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -131,9 +131,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Asus\Downloads\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles C:\Users\Asus\Downloads\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Asus\Documents\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Asus\Downloads\Projet_Fin_dAnnee\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -199,6 +199,30 @@ Projet_Fin_dAnnee_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee_autogen.dir\build.make CMakeFiles/Projet_Fin_dAnnee_autogen.dir/build
 .PHONY : Projet_Fin_dAnnee_autogen/fast
 
+Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.obj: Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.obj
+.PHONY : Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.obj
+
+# target to build an object file
+Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.obj
+.PHONY : Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.obj
+
+Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.i: Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.i
+.PHONY : Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.i
+
+# target to preprocess a source file
+Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.i
+.PHONY : Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.i
+
+Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.s: Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.s
+.PHONY : Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.s
+
+# target to generate assembly for a file
+Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.s
+.PHONY : Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.cpp.s
+
 Projet_Fin_dAnnee_autogen/mocs_compilation.obj: Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.obj
 .PHONY : Projet_Fin_dAnnee_autogen/mocs_compilation.obj
 
@@ -222,6 +246,30 @@ Projet_Fin_dAnnee_autogen/mocs_compilation.s: Projet_Fin_dAnnee_autogen/mocs_com
 Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s
 .PHONY : Projet_Fin_dAnnee_autogen/mocs_compilation.cpp.s
+
+src/data/eleverepository.obj: src/data/eleverepository.cpp.obj
+.PHONY : src/data/eleverepository.obj
+
+# target to build an object file
+src/data/eleverepository.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/data/eleverepository.cpp.obj
+.PHONY : src/data/eleverepository.cpp.obj
+
+src/data/eleverepository.i: src/data/eleverepository.cpp.i
+.PHONY : src/data/eleverepository.i
+
+# target to preprocess a source file
+src/data/eleverepository.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/data/eleverepository.cpp.i
+.PHONY : src/data/eleverepository.cpp.i
+
+src/data/eleverepository.s: src/data/eleverepository.cpp.s
+.PHONY : src/data/eleverepository.s
+
+# target to generate assembly for a file
+src/data/eleverepository.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/data/eleverepository.cpp.s
+.PHONY : src/data/eleverepository.cpp.s
 
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
@@ -271,6 +319,102 @@ src/mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/mainwindow.cpp.s
 .PHONY : src/mainwindow.cpp.s
 
+src/pages/dashboardpage.obj: src/pages/dashboardpage.cpp.obj
+.PHONY : src/pages/dashboardpage.obj
+
+# target to build an object file
+src/pages/dashboardpage.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/dashboardpage.cpp.obj
+.PHONY : src/pages/dashboardpage.cpp.obj
+
+src/pages/dashboardpage.i: src/pages/dashboardpage.cpp.i
+.PHONY : src/pages/dashboardpage.i
+
+# target to preprocess a source file
+src/pages/dashboardpage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/dashboardpage.cpp.i
+.PHONY : src/pages/dashboardpage.cpp.i
+
+src/pages/dashboardpage.s: src/pages/dashboardpage.cpp.s
+.PHONY : src/pages/dashboardpage.s
+
+# target to generate assembly for a file
+src/pages/dashboardpage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/dashboardpage.cpp.s
+.PHONY : src/pages/dashboardpage.cpp.s
+
+src/pages/inscriptionpage.obj: src/pages/inscriptionpage.cpp.obj
+.PHONY : src/pages/inscriptionpage.obj
+
+# target to build an object file
+src/pages/inscriptionpage.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/inscriptionpage.cpp.obj
+.PHONY : src/pages/inscriptionpage.cpp.obj
+
+src/pages/inscriptionpage.i: src/pages/inscriptionpage.cpp.i
+.PHONY : src/pages/inscriptionpage.i
+
+# target to preprocess a source file
+src/pages/inscriptionpage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/inscriptionpage.cpp.i
+.PHONY : src/pages/inscriptionpage.cpp.i
+
+src/pages/inscriptionpage.s: src/pages/inscriptionpage.cpp.s
+.PHONY : src/pages/inscriptionpage.s
+
+# target to generate assembly for a file
+src/pages/inscriptionpage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/inscriptionpage.cpp.s
+.PHONY : src/pages/inscriptionpage.cpp.s
+
+src/pages/listeelevespage.obj: src/pages/listeelevespage.cpp.obj
+.PHONY : src/pages/listeelevespage.obj
+
+# target to build an object file
+src/pages/listeelevespage.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/listeelevespage.cpp.obj
+.PHONY : src/pages/listeelevespage.cpp.obj
+
+src/pages/listeelevespage.i: src/pages/listeelevespage.cpp.i
+.PHONY : src/pages/listeelevespage.i
+
+# target to preprocess a source file
+src/pages/listeelevespage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/listeelevespage.cpp.i
+.PHONY : src/pages/listeelevespage.cpp.i
+
+src/pages/listeelevespage.s: src/pages/listeelevespage.cpp.s
+.PHONY : src/pages/listeelevespage.s
+
+# target to generate assembly for a file
+src/pages/listeelevespage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/pages/listeelevespage.cpp.s
+.PHONY : src/pages/listeelevespage.cpp.s
+
+src/widgets/sidebar.obj: src/widgets/sidebar.cpp.obj
+.PHONY : src/widgets/sidebar.obj
+
+# target to build an object file
+src/widgets/sidebar.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/widgets/sidebar.cpp.obj
+.PHONY : src/widgets/sidebar.cpp.obj
+
+src/widgets/sidebar.i: src/widgets/sidebar.cpp.i
+.PHONY : src/widgets/sidebar.i
+
+# target to preprocess a source file
+src/widgets/sidebar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/widgets/sidebar.cpp.i
+.PHONY : src/widgets/sidebar.cpp.i
+
+src/widgets/sidebar.s: src/widgets/sidebar.cpp.s
+.PHONY : src/widgets/sidebar.s
+
+# target to generate assembly for a file
+src/widgets/sidebar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Projet_Fin_dAnnee.dir\build.make CMakeFiles/Projet_Fin_dAnnee.dir/src/widgets/sidebar.cpp.s
+.PHONY : src/widgets/sidebar.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -286,15 +430,33 @@ help:
 	@echo ... Projet_Fin_dAnnee_autogen
 	@echo ... Projet_Fin_dAnnee_autogen_timestamp_deps
 	@echo ... Projet_Fin_dAnnee
+	@echo ... Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.obj
+	@echo ... Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.i
+	@echo ... Projet_Fin_dAnnee_autogen/3YJK5W5UP7/qrc_resources.s
 	@echo ... Projet_Fin_dAnnee_autogen/mocs_compilation.obj
 	@echo ... Projet_Fin_dAnnee_autogen/mocs_compilation.i
 	@echo ... Projet_Fin_dAnnee_autogen/mocs_compilation.s
+	@echo ... src/data/eleverepository.obj
+	@echo ... src/data/eleverepository.i
+	@echo ... src/data/eleverepository.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
 	@echo ... src/mainwindow.obj
 	@echo ... src/mainwindow.i
 	@echo ... src/mainwindow.s
+	@echo ... src/pages/dashboardpage.obj
+	@echo ... src/pages/dashboardpage.i
+	@echo ... src/pages/dashboardpage.s
+	@echo ... src/pages/inscriptionpage.obj
+	@echo ... src/pages/inscriptionpage.i
+	@echo ... src/pages/inscriptionpage.s
+	@echo ... src/pages/listeelevespage.obj
+	@echo ... src/pages/listeelevespage.i
+	@echo ... src/pages/listeelevespage.s
+	@echo ... src/widgets/sidebar.obj
+	@echo ... src/widgets/sidebar.i
+	@echo ... src/widgets/sidebar.s
 .PHONY : help
 
 
